@@ -18,6 +18,7 @@ public class BookedSeat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID sysId;
+    private UUID usersysId;
     @Column(unique = true,nullable = false)
     private  String bookingId;
     private  String seatId;

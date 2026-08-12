@@ -4,20 +4,34 @@ import com.acciojob.book_my_show.Dtos.Hallrequestdto;
 import com.acciojob.book_my_show.Dtos.Showrequestdto;
 import com.acciojob.book_my_show.Dtos.TheaterRequestdto;
 import com.acciojob.book_my_show.Dtos.Userdto;
-import com.acciojob.book_my_show.models.Hall;
-import com.acciojob.book_my_show.models.Show;
-import com.acciojob.book_my_show.models.Theater;
-import com.acciojob.book_my_show.models.User;
+import com.acciojob.book_my_show.models.*;
 import org.springframework.stereotype.Component;
 import com.acciojobs.book_my_show.utilitis.SystemUtility;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 
 public class Applicationtransformer {
+
+    public BookedSeat transformBookedseatRequestdtotoBookedseat(Show show,
+                                                                String seatId,
+                                                                UUID UsersysId){
+        return BookedSeat.builder()
+                .show(show)
+                .seatId(seatId)
+                .bookingId(SystemUtility.generate("bookedseat"))
+                .usersysId(UsersysId)
+                .updatedAt(LocalDateTime.now())
+                .updatedBy("System")
+                .createdAt(LocalDateTime.now())
+                .createdBy("System")
+                .build();
+
+    }
 
     public User transformuserdtotouser(Userdto userdto,String usertype){
       return User.builder()
